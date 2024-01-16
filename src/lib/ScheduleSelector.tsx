@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 // Import only the methods we need from date-fns in order to keep build size small
 import formatDate from 'date-fns/format'
+import {formatInTimeZone} from 'date-fns-tz'
 
 import { Text, Subtitle } from './typography'
 import colors from './colors'
@@ -145,7 +146,8 @@ class ScheduleSelector extends React.Component<IScheduleSelectorProps, StateType
       const currentDay = []
       for (let h = props.minTime; h < props.maxTime; h += 1) {
         for (let c = 0; c < props.hourlyChunks; c += 1) {
-          currentDay.push(addMinutes(addHours(addDays(startTime, d), h), c * minutesInChunk))
+          const newDate = new UTCDate(addMinutes(addHours(addDays(startTime, d), h), c * minutesInChunk))
+          currentDay.push(newDate)
         }
       }
       dates.push(currentDay)

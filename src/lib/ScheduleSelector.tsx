@@ -66,7 +66,7 @@ export interface IScheduleSelectorProps {
   selection: Array<Date>
   selectionScheme: SelectionSchemeType
   onChange: (newSelection: Array<Date>) => void
-  startDate: Date | UTCDate
+  startDate: Date
   numDays: number
   minTime: number
   maxTime: number
